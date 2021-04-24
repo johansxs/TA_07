@@ -1,0 +1,28 @@
+void setup() {
+  // en el void setup son las accciones que va a realizar arduino una sola vez, al iniciarse
+
+  Serial.begin(9600); // el seria begin es el comando para decirle al arduino que inicie, el valor de 9600 corresponde al tiempo.
+
+}
+
+void loop() {
+  // el void looop son las acciones que el arduino va a ejecutar de manera repetitiva, segun los intervalos de tiempo establecidos.
+  Serial.println(" la luminacion es de = "); // se le solicita al arduino que haga un print con el siguiente texto "la luminacion es de =" este sera el mensaje que salga cuando se ejecute la serie
+  Serial.println(analogRead(A0)); // este serial esta conectado direcctamente con el sensor de luz, la coneccion se da a traves del puerto analogo "A0"
+  delay(4000);  // el comando delay se utiliza para especificar el tiempo que va a tardar el arduino en hacer una medida, el valor de 4000 equivale a 4 segundos por medida
+  if (analogRead(A0) >= 150) {   // la intension con este if y else es el de imprimir un mensaje para e usuario de la app y que esta sepa si debe o no encender las luces
+    Serial.print("los niveles de luz son optimos, no necesita realizar ninguna accion, "); // aca se imprime el resultado y se da la recomendacion de lo que deba hacer, es de tener en cuenta que estas condiciones peuden cambiar de un cultivo a otro.
+  } else if (analogRead(A0) <= 150) {
+    Serial.print("esta oscuro, por favor encienda las luces, "); // el comando else if es especifico de arduino, en otros lenguajes de programacion se usa "elif"
+  }
+  else if (analogRead(A0) >= 550) {
+    Serial.print("existe exceso de iluminacion,por favor coloque polisombras, "); //uno de las opciones para usar los condicionales if y else ; es que se peude usar else if cuantas veces sea necesario.
+  }
+}
+// se pueden usar los "" para escribir las palabras que se van a imprimir en nuestro print
+// los comandos de if y alse son extremadamente utiles para hacer programas donde tenga este pasando una de dos opciones o mas
+// a los Seria.print se les puede agregar al dinal un "ln" esto es con el fin de que los resultados que se meustran en el seria salgan uno abajo del otro ayudando al orden de los datos.
+// se peude usar el ctrl + T para ajustar todo el codigo y que este se vea mas organizado
+// este programa es simple sin embargo se aprendieron cosas muy importante para lo que va a seguir siendo el proyecto en adelante, se usaron las condicionales basicas y se aprendio en general sobre el lenguaje de programacion de arduino, podria decir que el entorno de programacion de arduino es muy comodo 
+// se aprendio sobre la coneccion de la placa base de arduino, se usaron los canales analogos para poder tomar medidas con ayuda de un sensor de iluminacion, todo estos debidamente conectado en una protoboard
+// se espera avanzar ams en esta parte de la aplicacion ya que la sugerencia de la polisombra puede ser una accion automatica hecha por arduino,tambien el encender las luces puede ser una respuesta de arduino ante niveles de iluminacion bajos. 
